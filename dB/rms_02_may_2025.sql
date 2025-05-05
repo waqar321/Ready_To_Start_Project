@@ -696,7 +696,7 @@ CREATE TABLE `receipt_items` (
   KEY `receipt_items_item_id_foreign` (`item_id`),
   CONSTRAINT `receipt_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE,
   CONSTRAINT `receipt_items_receipt_id_foreign` FOREIGN KEY (`receipt_id`) REFERENCES `receipts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `receipt_items` */
 
@@ -741,7 +741,14 @@ insert  into `receipt_items`(`id`,`receipt_id`,`item_id`,`item_qty`,`item_price`
 (38,16,5,3,70.00,210.00,'2025-04-19 03:04:15',NULL,NULL),
 (39,16,11,1,400.00,400.00,'2025-04-19 03:04:15',NULL,NULL),
 (40,16,12,1,400.00,400.00,'2025-04-19 03:04:15',NULL,NULL),
-(41,17,11,3,400.00,1200.00,'2025-04-26 02:17:48',NULL,NULL);
+(41,17,11,3,400.00,1200.00,'2025-04-26 02:17:48',NULL,NULL),
+(42,18,2,2,350.00,700.00,'2025-04-29 01:12:11',NULL,NULL),
+(43,18,3,3,160.00,480.00,'2025-04-29 01:12:11',NULL,NULL),
+(44,18,9,1,500.00,500.00,'2025-04-29 01:12:11',NULL,NULL),
+(45,18,12,1,400.00,400.00,'2025-04-29 01:12:11',NULL,NULL),
+(46,19,2,2,350.00,700.00,'2025-05-01 02:07:02',NULL,NULL),
+(47,19,3,3,160.00,480.00,'2025-05-01 02:07:02',NULL,NULL),
+(48,19,5,2,70.00,140.00,'2025-05-01 02:07:02',NULL,NULL);
 
 /*Table structure for table `receipts` */
 
@@ -757,7 +764,7 @@ CREATE TABLE `receipts` (
   PRIMARY KEY (`id`),
   KEY `receipts_entry_by_foreign` (`entry_by`),
   CONSTRAINT `receipts_entry_by_foreign` FOREIGN KEY (`entry_by`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `receipts` */
 
@@ -775,7 +782,9 @@ insert  into `receipts`(`id`,`total_amount`,`entry_by`,`created_at`,`updated_at`
 (14,1200.00,1,'2025-04-19 02:23:57','2025-04-19 02:23:57',NULL),
 (15,3890.00,1,'2025-04-19 02:36:14','2025-04-19 02:36:14',NULL),
 (16,1520.00,1,'2025-04-19 03:04:15','2025-04-19 03:04:15',NULL),
-(17,1200.00,1,'2025-04-26 02:17:48','2025-04-26 02:17:48',NULL);
+(17,1200.00,1,'2025-04-26 02:17:48','2025-04-26 02:17:48',NULL),
+(18,2080.00,1,'2025-04-29 01:12:11','2025-04-29 01:12:11',NULL),
+(19,1320.00,1,'2025-05-01 02:07:02','2025-05-01 02:07:02',NULL);
 
 /*Table structure for table `role_user` */
 
@@ -831,11 +840,10 @@ CREATE TABLE `roles` (
 insert  into `roles`(`id`,`title`,`is_active`,`created_at`,`updated_at`,`deleted_at`) values 
 (1,'Super Admin',1,'2024-06-09 21:20:02','2024-06-26 23:05:06',NULL),
 (8,'Manager',1,'2024-08-02 06:53:26','2024-08-28 05:06:37',NULL),
-(12,'Employee',1,'2024-10-19 20:36:16','2025-01-10 19:55:08',NULL),
+(12,'Employee',1,'2024-10-19 20:36:16','2025-04-28 19:38:29',NULL),
 (13,'Cashier',1,'2024-10-19 22:03:37','2025-01-10 19:55:24',NULL),
 (14,'Customer',1,'2024-11-01 02:41:35','2025-01-10 19:54:57',NULL),
-(15,'Vendor',1,'2025-01-10 19:45:45','2025-01-10 19:55:52',NULL),
-(28,'Employee',1,'2025-04-15 20:57:32','2025-04-15 20:57:32',NULL);
+(15,'Vendor',1,'2025-01-10 19:45:45','2025-01-10 19:55:52',NULL);
 
 /*Table structure for table `unit_types` */
 
@@ -885,7 +893,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`username`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`is_active`,`created_at`,`updated_at`,`last_activity`,`designation`) values 
-(1,'super_admin','Waqar Mughal','super_admin@gmail.com',NULL,'$2a$12$ZkhVPyp1c31RcmiJWDs7BuBUXLqcxHbc3vcptjziNv/cCRzBJ7upe',NULL,1,'2024-09-09 13:05:51','2025-04-26 03:05:09','2025-04-26 03:05:09',NULL),
+(1,'super_admin','Waqar Mughal','super_admin@gmail.com',NULL,'$2a$12$ZkhVPyp1c31RcmiJWDs7BuBUXLqcxHbc3vcptjziNv/cCRzBJ7upe',NULL,1,'2024-09-09 13:05:51','2025-05-01 20:21:56','2025-05-01 20:21:56',NULL),
 (6,NULL,'testing user','waqar@gmail.com',NULL,'$2y$10$0QaRsiSRS3eCYurkxJpVduYjFcXFCFfXi/59LMhFwFazm11GWfNT2',NULL,1,'2025-01-10 19:44:47','2025-01-10 19:44:47',NULL,NULL),
 (7,NULL,'Aaamir','aamir@gmail.com',NULL,'$2y$10$x4.kQaRTfiqAYIy/TsmQh.QXrT7HRVU5m1e22tRY9mowVyiAjkFIq',NULL,1,'2025-01-10 20:20:42','2025-01-10 20:20:42',NULL,NULL),
 (8,NULL,'Shan','shan@gmail.com',NULL,'$2y$10$.PTZUcEhgkiVPIVq/cu7QOAa9zbkiXK0YEVW8OorQ/aYjGQTyqltC',NULL,1,'2025-01-10 20:21:43','2025-04-15 20:59:52',NULL,'bartan dhulai'),

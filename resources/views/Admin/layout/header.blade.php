@@ -12,7 +12,7 @@
 <!-- top navigation -->
 <div class="top_nav sticky-top">
     <div class="nav_menu">
-        <div style="position: absolute; padding: 10px 0 10px 0px; font-size: 24px; left:60px"><b>ABASEEN </b>RMS</div>
+        <div style="position: absolute; padding: 10px 0 10px 0px; font-size: 24px; left:60px"><b>NAME </b>Name</div>
         <div class="nav toggle">
             <a id="menu_toggle"><i class="fa fa-bars"></i></a>
         </div>

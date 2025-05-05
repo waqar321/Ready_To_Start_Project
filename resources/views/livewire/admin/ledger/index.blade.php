@@ -81,19 +81,19 @@
             // }, 100);
             ApplyAllSelect2(); 
 
-            $('#vendor_item_section').addClass('d-none');
-            $('#unit_price_section').addClass('d-none');
-            $('#cash_amount_section').addClass('d-none');
-            $('#unit_qty_section').addClass('d-none');
-            $('#total_amount_section').addClass('d-none');
+            // $('#vendor_item_section').addClass('d-none');
+            // $('#unit_price_section').addClass('d-none');
+            // $('#cash_amount_section').addClass('d-none');
+            // $('#unit_qty_section').addClass('d-none');
+            // $('#total_amount_section').addClass('d-none');
 
-            $('#cash_amount').on('input', function () 
-            {
-                    // alert('awdawd');
-                    // return false;
+            // $('#cash_amount').on('input', function () 
+            // {
+            //         // alert('awdawd');
+            //         // return false;
 
-                    updateTotal();
-            });
+            //         updateTotal();
+            // });
     
             // $('#cash_amount').on('input', updateTotal);
     
@@ -102,79 +102,79 @@
             //     updateTotal();
             // });
     
-            $('#unit_qty').on('input', function ()
-            {
-                item_qty = $(this).val();
-                // alert(item_qty);
-                updateTotal();
-            });
+            // $('#unit_qty').on('input', function ()
+            // {
+            //     item_qty = $(this).val();
+            //     // alert(item_qty);
+            //     updateTotal();
+            // });
 
-            $('#item_id').on('change', function ()
-            {
-                // const selectedValues = $(this).select2("val");
-                const selectedValues = $(this).val();
-                Livewire.emit('getItemAmount', selectedValues);  // Emit the event with the selected item ID
-                // alert(selectedValues);
-            });
-            window.addEventListener('item_price', event => 
-            {
-                item_price = event.detail.item_price;
-                updateTotal();
-            });
-            $('#payment_type').on('change', function () 
-            {
-                let type = $(this).val();
+            // $('#item_id').on('change', function ()
+            // {
+            //     // const selectedValues = $(this).select2("val");
+            //     const selectedValues = $(this).val();
+            //     Livewire.emit('getItemAmount', selectedValues);  // Emit the event with the selected item ID
+            //     // alert(selectedValues);
+            // });
+            // window.addEventListener('item_price', event => 
+            // {
+            //     item_price = event.detail.item_price;
+            //     updateTotal();
+            // });
+            // $('#payment_type').on('change', function () 
+            // {
+            //     let type = $(this).val();
 
-                if (type === 'cash') 
-                {
-                    $('#cash_amount_section').removeClass('d-none');
-                    $('#unit_price_section').addClass('d-none');
-                    $('#total_amount_section').removeClass('d-none');
-                } 
-                else if (type === 'product_bought') 
-                {
-                    // $('#cash_amount_section').removeClass('d-none');
-                    $('#vendor_item_section').removeClass('d-none');
-                    $('#unit_price_section').removeClass('d-none');
-                    // $('#unit_price_section').addattr('readonly');
-                    $('#unit_qty_section').removeClass('d-none');
-                    $('#total_amount_section').removeClass('d-none');
-                    // alert('awd');                    
-                    updateTotal();
-                } 
-                // else if (type === 'product_sold') 
-                // {
-                //     $('#productSection').removeClass('d-none');
-                //     $('#cashAmountSection').addClass('d-none');
-                //     updateTotal();
-                // } 
-                // else 
-                // {
-                //     $('#productSection').addClass('d-none');
-                //     $('#cashAmountSection').addClass('d-none');
-                // }
-            });
+            //     if (type === 'cash') 
+            //     {
+            //         $('#cash_amount_section').removeClass('d-none');
+            //         $('#unit_price_section').addClass('d-none');
+            //         $('#total_amount_section').removeClass('d-none');
+            //     } 
+            //     else if (type === 'product_bought') 
+            //     {
+            //         // $('#cash_amount_section').removeClass('d-none');
+            //         $('#vendor_item_section').removeClass('d-none');
+            //         $('#unit_price_section').removeClass('d-none');
+            //         // $('#unit_price_section').addattr('readonly');
+            //         $('#unit_qty_section').removeClass('d-none');
+            //         $('#total_amount_section').removeClass('d-none');
+            //         // alert('awd');                    
+            //         updateTotal();
+            //     } 
+            //     // else if (type === 'product_sold') 
+            //     // {
+            //     //     $('#productSection').removeClass('d-none');
+            //     //     $('#cashAmountSection').addClass('d-none');
+            //     //     updateTotal();
+            //     // } 
+            //     // else 
+            //     // {
+            //     //     $('#productSection').addClass('d-none');
+            //     //     $('#cashAmountSection').addClass('d-none');
+            //     // }
+            // });
 
             function updateTotal() 
             {
-                let total_amount=0;
+                // let total_amount=0;
 
-                if(item_price!=0)
-                {
-                    // alert(item_qty);
+                // if(item_price!=0)
+                // {
+                //     // alert(item_qty);
 
-                    $('#unit_price').val(item_price);
-                    // item_qty = $('#unit_qty').val();
-                    total_amount = item_qty * item_price;
-                    // alert(item_price);
-                    // alert(item_qty);
-                }
-                else
-                {
-                    total_amount = parseFloat($('#cash_amount').val()) || 0;
-                }
+                //     $('#unit_price').val(item_price);
+                //     // item_qty = $('#unit_qty').val();
+                //     total_amount = item_qty * item_price;
+                //     // alert(item_price);
+                //     // alert(item_qty);
+                // }
+                // else
+                // {
+                //     total_amount = parseFloat($('#cash_amount').val()) || 0;
+                // }
                 
-                $('#total_amount').val((total_amount).toFixed(2));
+                // $('#total_amount').val((total_amount).toFixed(2));
                 // let unit_price = parseFloat($('#unit_price').val()) || 0;
                 // let unit_qty = parseFloat($('#unit_qty').val()) || 0;
                 // $('#total_amount').val((qty * unit).toFixed(2));
@@ -191,7 +191,6 @@
             $('.multiplePermissions').empty();
             // $("#city_id").empty();
             // $("#country_id").empty();
-            // ApplyAllSelect2();
             // Livewire.emit('LoadDataNow');                          
         });
         window.addEventListener('updateData', event => 
@@ -217,18 +216,6 @@
             // Livewire.emit('LoadDataNow');                          
         });
 
-
-        $('.Select2DropDown').on('change', function(e) 
-        {      
-            if($(this).attr('data-id') === 'permissions')
-            {
-                console.log('print permissions');
-                const selectedValues = $(this).select2("val");
-                console.log('Selected Values:', selectedValues);
-                Livewire.emit('UpdatePermissionIds', $(this).attr('data-id'), selectedValues);
-            }
-        });
-
         function ApplyAllSelect2()
         {
             const token = getToken();
@@ -236,13 +223,27 @@
                 "Authorization": `Bearer ${token}`,
             };
           
-            $('.multiplePermissions').select2();
+            // $('.user_role').select2();
 
-            window.initSelectCompanyDrop=()=>{
-                $('.multiplePermissions').select2({
-                    placeholder: 'Please Select Permissions',
+            window.initSelectCompanyDrop=()=>
+            {
+                $('#user_role').select2({
+                    placeholder: 'Please Select User Role',
                     allowClear: true
                 });
+                $('#payment_type').select2({
+                    placeholder: 'Please Select Payment Type',
+                    allowClear: true
+                });
+                $('#user_id').select2({
+                    placeholder: 'Please Select User',
+                    allowClear: true
+                });
+                $('#item_id').select2({
+                    placeholder: 'Please Select Item',
+                    allowClear: true
+                });
+                
             }
             initSelectCompanyDrop();
 
@@ -250,8 +251,75 @@
                 initSelectCompanyDrop();
             });
         }
+        $('.Select2DropDown').on('change', function(e) 
+        {      
+            // data-id="user_role"
+            // data-id="payment_type"
+            // data-id="user_id"
+            // data-id="item_id"
+            const selectedValues = $(this).select2("val");
+            Livewire.emit('UpdateFields', $(this).attr('data-id'), selectedValues);
+
+            // if($(this).attr('data-id') === 'user_role')
+            // {
+                //     const selectedValues = $(this).select2("val");
+            //     // console.log('Selected Values:', selectedValues);
+            //     Livewire.emit('UpdateFields', $(this).attr('data-id'), selectedValues);
+            // }
+        });
+
+        
+        
+        window.addEventListener('LoadedUsers', event => 
+        {  
+            users = event.detail.users;
+            // $('#HRDepartment').text('Departments ( ' + event.detail.DepartmentCount + ' ) ');
+            $('#user_id').empty();
+        
+            // Add a "Select User" option manually
+           $('#user_id').append(new Option('-- Select User --', '', true, true)); 
+    
+            $('#user_id').select2({
+                placeholder: 'Please Select Users',
+                data: Object.entries(users).map(([id, text]) => ({
+                    id: id,
+                    text: text
+                })),
+                closeOnSelect: false
+            });
+            // $('.loadingDepartments').css('display', 'none');
+        });
+        window.addEventListener('LoadedItems', event => 
+        {  
+            items = event.detail.items;
+            // $('#HRDepartment').text('Departments ( ' + event.detail.DepartmentCount + ' ) ');
+            $('#item_id').empty();
+        
+            // Add a "Select User" option manually
+           $('#item_id').append(new Option('-- Select Item --', '', true, true)); 
+    
+            $('#item_id').select2({
+                placeholder: 'Please Select Items',
+                data: Object.entries(items).map(([id, text]) => ({
+                    id: id,
+                    text: text
+                })),
+                closeOnSelect: false
+            });
+            // $('.loadingDepartments').css('display', 'none');
+        });
+
+
 
                
+        window.addEventListener('item_error', event => 
+        {
+            Swal.fire({
+                    icon: 'error', 
+                    title: 'Item Error',
+                    text: event.detail.message,
+                });
+        });
         window.addEventListener('ItemCategoryUpdated', event => 
         {                
             console.log(event.detail);

@@ -6,6 +6,8 @@ namespace App\Traits\livewireComponentTraits;
 
 use App\Models\Admin\Ledger;
 use App\Models\Admin\Item;
+use App\Models\User;
+use App\Models\Role;
 use App\Traits\livewireComponentTraits\LivewireComponentsCommon;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 // use App\Exports\CategoriesExport;
@@ -22,7 +24,17 @@ trait LedgerComponent
     public Ledger $Ledger;  
     public $Update=false;
     public $items;
-
+    public $user_role_show;
+    public $payment_type_show;
+    public $show_vendors;
+    public $show_items;
+    public $payment_detail_show;
+    public $selected_role_id;
+    public $selected_user_id;
+    public $selected_item_id;
+    public $selected_payment_id;
+    public $unit_price_read_only='';
+        
     public function __construct()
     {       
         $this->Tablename = 'ledger';        
@@ -35,8 +47,15 @@ trait LedgerComponent
     }
 
     protected $rules = [
-        'Ledger.name' => 'required',
+        // 'Ledger.name' => '',
+        'Ledger.cash_amount' => '',
+        'Ledger.unit_price' => '',
+        'Ledger.unit_qty' => '',
+        'Ledger.total_amount' => '',
+        'Ledger.payment_detail' => '',
     ];
+
+
     protected $messages = [
         'Ledger.required' => 'The Title is must required.',
     ];
@@ -46,26 +65,19 @@ trait LedgerComponent
     }
     public function updated($value)
     {
+        // dd($value);
+
         if ($value == 'searchByName' || $value == 'paginateLimit')
         {
             $this->Collapse = "collapse";
         } 
-        else if ($value == 'IdNames') 
+        else if($value == 'Ledger.cash_amount')
         {
-            if (!preg_match('/^([\w-]+,? ?)*[\w-]+$/', $this->IdNames))           
-            {
-                $this->addError('IdNames', 'Invalid format. Accepted format: value1, value2, value3');
-            }
-            $this->Collapse = "uncollapse";
+            $this->Ledger->total_amount = $this->Ledger->cash_amount;
         }
-        else if ($value == 'ClassNames') 
+        else if($value == 'Ledger.unit_qty')
         {
-            if (!preg_match('/^([\w-]+,? ?)*[\w-]+$/', $this->ClassNames))           
-            {
-                $this->addError('ClassNames', 'Invalid format. Accepted format: value1, value2, value3');
-            }
-            $this->Collapse = "uncollapse";
-            
+            $this->Ledger->total_amount = $this->Ledger->unit_price * $this->Ledger->unit_qty;
         }
         else
         {
@@ -99,10 +111,30 @@ trait LedgerComponent
         $this->MainTitle = 'LedgerOperation';
         $this->paginateLimit = 100;
         
-        $this->items = Item::where('category_id', 12)->pluck('name', 'id');
-        // $this->vendors = User::whereHas('roles', function ($query) {
-        //     $query->where('id', 15);
-        // })->get();
+        // $this->user_role_show = 'd-none';
+        $this->payment_type_show = 'd-none';
+        $this->show_users = 'd-none';
+        $this->show_items = 'd-none';
+        $this->cash_amount_show = 'd-none';
+        $this->unit_price_show = 'd-none';
+        $this->unit_qty_show = 'd-none';
+        $this->total_amount_show = 'd-none';
+        $this->payment_detail_show = 'd-none';
+
+        // $this->Ledger->cash_amount = 0;
+        // $this->Ledger->unit_price = 0;
+        // $this->Ledger->unit_qty = 0;
+        // $this->Ledger->total_amount = 0;
+        // $this->Ledger->payment_detail = 0;
+    
+        // $this->items = Item::where('category_id', 12)->pluck('name', 'id');
+        $this->roles = Role::where('id', '!=',  1)->pluck('title', 'id');
+        // dd(Role::pluck('title', 'id')->toArray());
+        // $this->vendor = User::whereHas('roles', function ($query) {
+            //     $query->where('id', 15);
+            // })->get();
+        $this->items = collect();
+        $this->users = collect();
 
         // dd($this->items);
 
